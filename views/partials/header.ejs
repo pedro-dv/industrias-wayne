@@ -2,33 +2,40 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Título da Página</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title> <!-- Título dinâmico -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/dashboard">Indústrias Wayne</a>
-
-        <div class="navbar-nav ml-auto">
-
-            <li class="nav-item d-none d-lg-block">
-                <a class="nav-link" href="#section-equipamentos">Equipamentos</a>
-            </li>
-
-            <li class="nav-item dropdown d-lg-none"> <!-- Ícone de pesquisa aparece apenas em telas menores -->
-                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa-sharp fa-solid fa-list"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="searchDropdown">
-                    <a class="dropdown-item" href="#section-equipamento1">Equipamento 1</a>
-                </div>
-            </li> 
-
-        </div>
-        
-    </nav>
-</header>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Indústrias Wayne</a>
+    
+            <div class="navbar-nav ml-auto">
+                <!-- Ícone de menu com dropdown para telas menores -->
+                <li class="nav-item dropdown d-lg-none"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bars"></i> <!-- Ícone de menu -->
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menuDropdown">
+                        <a class="dropdown-item" href="#section-equipamentos">Equipamentos</a>
+                        <a class="dropdown-item" href="/logout">Sair</a>
+                     
+                    </div>
+                </li>
+    
+                <!-- Itens de navegação para telas grandes -->
+                <ul class="navbar-nav d-none d-lg-flex"> <!-- Escondendo em telas pequenas -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#section-equipamentos">Equipamentos</a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Sair</a>
+                        </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    

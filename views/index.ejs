@@ -1,0 +1,41 @@
+
+<header>
+    <h1 class="text-center my-4">Bem-vindo às Indústrias Wayne</h1>
+</header>
+
+<div class="container">
+    <p class="text-center">Explore nossos sistemas de segurança e gestão.</p>
+    <div class="text-center mt-5">
+        <a href="/login" class="btn btn-primary">Entrar</a>
+        <a href="/register" class="btn btn-secondary ml-3">Cadastre-se</a> <!-- Adicionada margem à esquerda -->
+    </div>
+</div>
+
+<div class="container mt-lg-5">
+    <h1 class="mt-4 mb-5 text-sm-center">Recursos</h1>
+    <section class="row" id="section-equipamentos">
+        <% if (recursos && recursos.length > 0) { %>
+            <% recursos.forEach(recurso => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= recurso.nome %></h5>
+                            <p class="card-text"><%= recurso.descricao %></p>
+                            <p class="card-text"> Quantidade: <%= recurso.quantidade %></p>
+
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="col-12">
+                <p>Nenhum recurso encontrado.</p>
+            </div>
+        <% } %>
+    </section>
+</div>
+
+    
+
+    
+    

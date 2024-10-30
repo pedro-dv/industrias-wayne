@@ -15,3 +15,9 @@ body{
     display: none; /* Inicia oculta */
     z-index: 1000;
 }
+
+.nav-link {
+    margin-right: 15px; 
+    margin-left: 10px;
+}
+
