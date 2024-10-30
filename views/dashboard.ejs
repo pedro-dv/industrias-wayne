@@ -1,51 +1,42 @@
 
 
-<h2>Dashboard</h2>
-<h3>Recursos</h3>
-
-
-<div class="container">
-
-    <h3>Adicionar Recurso</h3>
-
-    <div class="card" id="formulario">
-        <form action="/recursos/adicionar" method="POST">
-            <input type="text" name="nome" placeholder="Nome" class="form-control" required >
-            <br>
-            <input type="text" name="tipo" placeholder="Tipo" class="form-control" required>
-            <br>
-            <input type="number" name="quantidade" placeholder="Quantidade" class="form-control" required>
-            <br>
-            <button type="submit" class="btn btn-primary">Adicionar</button>
-        </form>
-    </div>
-
-    <div>
-
-        <h2>Dashboard</h2>
-        <h3>Recursos</h3>
-
-    <!-- Caixa de Mensagem de Sucesso -->
-        <% if (successMessage) { %>
-            <div class="flash-message" id="flash-message">
-                <%= successMessage %>
-            </div>
-        <% } %>
-
-        <ul>
-            <% recursos.forEach(recurso => { %>
-                <li>
-                    <%= recurso.nome %> - <%= recurso.tipo %> - <%= recurso.quantidade %>
-                    <a href="/recursos/editar/<%= recurso.id %>">Editar</a>
-                    <form action="/recursos/deletar/<%= recurso.id %>" method="POST" class="form-control" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja deletar este recurso?');">
-                        <button type="submit" class="btn btn-primary">Deletar</button>
-                    </form>
-                </li>
-            <% }) %>
-        </ul>
-
-    </div>
-    
-
+<div class="mt-4 mb-5">
+    <h4>Adicionar Recurso</h4>
+    <form action="/recursos/adicionar" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <input type="text" class="form-control" id="tipo" name="tipo" required>
+        </div>
+        <div class="form-group">
+            <label for="quantidade">Quantidade</label>
+            <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
 </div>
 
+<h2 class="mt-4 mb-5 text-sm-center ">Dashboard</h2>
+
+<h3>Recursos:</h3>
+<section class="row" id="section-equipamentos">
+
+    <% recursos.forEach(recurso => { %>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= recurso.nome %></h5>
+                    <p class="card-text">Tipo: <%= recurso.tipo %></p>
+                    <p class="card-text">Quantidade: <%= recurso.quantidade %></p>
+                    <a href="/recursos/editar/<%= recurso.id %>" class="btn btn-warning">Editar</a>
+                    <form action="/recursos/deletar/<%= recurso.id %>" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este recurso?');">Deletar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</section>
