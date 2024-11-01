@@ -1,6 +1,6 @@
 
 <h2 class="mt-4 text-center">Editar Recurso</h2>
-<form action="/recursos/editar/<%= recurso.id %>" method="POST">
+<form action="/recursos/atualizar/<%= recurso.id %>" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" name="nome" value="<%= recurso.nome %>" required>
@@ -12,6 +12,17 @@
     <div class="form-group">
         <label for="quantidade">Quantidade</label>
         <input type="number" class="form-control" id="quantidade" name="quantidade" value="<%= recurso.quantidade %>" required>
+    </div>
+    <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" required="<% recurso.descricao %>" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="imagem">Imagem (opcional):</label>
+        <input type="file" name="imagem" accept="image/*">
+        <!-- <% if (recurso.imagem) { %> -->
+            <p>Imagem atual: <img src="/uploads/<%= recurso.imagem %>" alt="Imagem do recurso" style="max-width: 200px;"></p>
+        <!-- <% } %> -->
     </div>
     <button type="submit" class="btn btn-success">Salvar Alterações</button>
 </form>

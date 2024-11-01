@@ -12,12 +12,14 @@
 </div>
 
 <div class="container mt-lg-5">
-    <h1 class="mt-4 mb-5 text-sm-center">Recursos</h1>
+    <h1 class="mt-4 mb-5 text-sm-center">Recursos recentemente adicionados</h1>
     <section class="row" id="section-equipamentos">
         <% if (recursos && recursos.length > 0) { %>
             <% recursos.forEach(recurso => { %>
                 <div class="col-md-4 mb-4">
                     <div class="card">
+                        <img src="/uploads/<%= recurso.imagem %>"  class="card-img-top img-fluid" style="max-height: 200px; object-fit: cover;"> <!-- Adicionando a imagem -->
+
                         <div class="card-body">
                             <h5 class="card-title"><%= recurso.nome %></h5>
                             <p class="card-text"><%= recurso.descricao %></p>

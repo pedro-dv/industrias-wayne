@@ -21,3 +21,15 @@ body{
     margin-left: 10px;
 }
 
+.card {
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s; /* Transição suave ao passar o mouse */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+
