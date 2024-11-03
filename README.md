@@ -17,23 +17,57 @@ A aplicação foi projetada para otimizar os processos de segurança e gestão d
 - **Backend**: Node.js, Express.js
 - **Frontend**: EJS para renderização dinâmica de páginas
 - **Banco de Dados**: MySQL, gerenciado pelo MySQL Workbench
-- **Estilização Futuramente**: Pretendemos utilizar Bootstrap 4 para uma interface mais estilizada e amigável
-- **Autenticação Futuramente**: Implementaremos um sistema de autenticação de login para maior segurança
+- **Estilização ***: Pretendemos utilizar Bootstrap 4 para uma interface mais estilizada e amigável
+- **Autenticação ***: Implementaremos um sistema de autenticação de login para maior segurança
+
+## Dependências (Bibliotecas)
+
+cookie-parser       <-- Middleware para analisar cookies
+express             <-- Framework web para o Node.js
+mysql2              <-- Cliente MySQL para Node.js
+body-parser         <-- Middleware para analisar o corpo das requisições
+express-ejs-layouts <-- Suporte para layouts em EJS
+express-flash       <-- Exibir mensagens flash (notificações temporárias)
+express-session     <-- Middleware para gerenciar sessões de usuário
+jsonwebtoken        <-- Autenticação baseada em JWT (JSON Web Token)
+bcrypt              <-- Biblioteca para hashing de senhas
+multer              <-- Middleware para upload de arquivos
+dotenv              <-- Gerenciamento de variáveis de ambiente
+validator           <-- Validação de dados de entrada
+connect-flash       <-- Exibir mensagens flash usando sessions
+helmet              <-- Segurança para cabeçalhos HTTP
+cors                <-- Permitir requisições de diferentes domínios
+morgan              <-- Logger HTTP para monitoramento de requisições
+
+
 
 ## Estrutura de Arquivos
 
 ```plaintext
 industrias-wayne/
-│
-├── app.js                  # Arquivo principal da aplicação
-├── package.json            # Dependências do projeto
-├── views/                  # Páginas EJS
+├── config
+    ├── connection.js
+├── node_modules  
+├── public/                 # Arquivos estáticos
+│   └── css/ 
+    └── js/               
+    ├── images/
+├── uploads   
+├── views/                  # Páginas EJS       
+    ├── errors  
+    ├── partials          
+        ├── header.ejs
+        ├── footer.ejs                       
 │   ├── layout.ejs          # Layout padrão
 │   ├── dashboard.ejs       # Dashboard de visualização
 │   └── editar_recurso.ejs  # Página de edição de recursos
-│
-├── public/                 # Arquivos estáticos
-│   └── css/ 
-    └── js/                # Estilos personalizados
-│
+    ├── login.ejs
+    ├── register.ejs
+    ├── atualizar.ejs  
+    ├── index.ejs  
+├── app.js                  # Arquivo principal da aplicação
+├── package.json            # Dependências do projeto
+  
 └── README.md               # Documentação do projeto
+
+
