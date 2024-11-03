@@ -1,6 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+header.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000; /* Para garantir que o header fique acima de outros elementos */
+  }
+
 body{
     background-color: #eceff1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+footer{
+    /* position:fixed; */
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+}
+
 
 
 /* Estilo para a caixa de mensagem */
@@ -33,3 +63,26 @@ body{
 }
 
 
+
+/* Animaçao do mocegos */
+.bat {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url('link-da-imagem-do-morcego.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0;
+    animation: fly 1.5s linear forwards;
+  }
+  
+  @keyframes fly {
+    0% {
+      opacity: 1;
+      transform: scale(0) translate(0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(3) translate(var(--x), var(--y));
+    }
+  }
+  

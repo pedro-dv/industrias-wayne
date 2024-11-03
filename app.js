@@ -1,75 +1,5 @@
-// // Configurações de ambiente
-// process.env.NODE_NO_WARNINGS = '1';
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const path = require('path');
-// const expressLayouts = require('express-ejs-layouts');
-// const flash = require('express-flash');
-// const session = require('express-session');
-// const cookieParser = require('cookie-parser');
-// const connection = require('./config/connection');
-// const upload = require('./config/multerConfig');
 
-// const authRoutes = require('./routes/authRoutes');
-// const resourceRoutes = require('./routes/resourceRoutes');
-// const authenticateToken = require('./middleware/authMiddleware');
-
-// const app = express();
-// const PORT = 3002;
-
-// // Configurações de middlewares globais
-// app.use(session({
-//     secret: 'sua_chave_secreta',
-//     resave: false,
-//     saveUninitialized: true
-// }));
-// app.use(flash());
-// app.use(cookieParser());
-// app.use(expressLayouts);
-// app.set('layout', 'layout');
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-// app.use(express.static("public"));
-// app.use('/uploads', express.static('uploads'));
-
-// // Configuração do EJS
-// app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
-
-// // // Importação das rotas
-// app.use('/', authRoutes);
-// app.use('/recursos', authenticateToken, resourceRoutes);
-// app.use((err, req, res, next) => {
-//     console.error(err.stack);
-//     res.status(500).send('Algo deu errado!');
-// });
-
-
-// // Inicialização do servidor
-// app.listen(PORT, () => {
-//     console.log(`Servidor rodando na porta ${PORT}`);
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+process.env.NODE_NO_WARNINGS = '1';
 
 // // Importações
 const express = require('express');
@@ -87,34 +17,10 @@ const multer = require('multer');
 // DataBase
 const connection = require('./config/connection');
 
-
-
-
 //Configurações de variáveis e constantes
 const app = express();
-const secretKey = 'sua_chave_secreta_jwt';
+const secretKey = '3c!B!47gR_kR#8gL!e34s*P%f';
 const PORT = 3001;
-
-
-
-// //Configuração do banco de dados
-// const dbConfig = {
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'L1nux2906*',
-//     database: 'industrias_wayne'
-// };
-
-
-// const connection = mysql.createConnection(dbConfig);
-// connection.connect(err => {
-//     if (err) {
-//         console.error('Erro ao conectar ao banco de dados:', err);
-//         return;
-//     }
-//     console.log('Conectado ao banco de dados MySQL.');
-// });
-
 
 //---------------Configuração do storage do multer
 const storage = multer.diskStorage({
@@ -171,7 +77,9 @@ function authenticateToken(req, res, next) {
     });
 }
 
-//Rotas principais
+
+
+//Rotas Inicio ----------------------------------------------------------------------------------------------------
 app.get('/', (req, res) => {
     connection.query('SELECT * FROM recursos', (err, recursos) => {
         if (err) {
@@ -182,6 +90,8 @@ app.get('/', (req, res) => {
     });
 });
 
+
+// Rota dashboard (principal logado)
 app.get('/dashboard', authenticateToken, (req, res) => {
     connection.query('SELECT * FROM recursos', (err, recursos) => {
         if (err) {
@@ -192,7 +102,9 @@ app.get('/dashboard', authenticateToken, (req, res) => {
     });
 });
 
-// Rotas de recursos--------------------------------------------------------------------------
+
+
+// Rotas para adincinar recursos
 app.post('/recursos/adicionar', upload.single('imagem'), (req, res) => {
     const { nome, tipo, quantidade, descricao } = req.body;
     const imagem = req.file ? req.file.filename : null; // Obtemos o nome da imagem
@@ -208,6 +120,8 @@ app.post('/recursos/adicionar', upload.single('imagem'), (req, res) => {
     });
 });
 
+
+//Rota para Deletar recurso
 app.post('/recursos/deletar/:id', (req, res) => {
     const recursoId = req.params.id;
     console.log('Requisição para deletar recurso com ID:', recursoId); 
@@ -244,6 +158,8 @@ app.get('/recursos/editar/:id', authenticateToken, (req, res) => {
     });
 });
 
+
+
 // Rota para atualizar recurso
 app.post('/recursos/atualizar/:id', upload.single('imagem'), (req, res) => {
     const recursoId = req.params.id;
@@ -262,8 +178,6 @@ app.post('/recursos/atualizar/:id', upload.single('imagem'), (req, res) => {
         res.redirect('/dashboard');
     });
 });
-
-
 
 
 // Rotas de autenticação
@@ -286,6 +200,8 @@ app.post('/register', async (req, res) => {
     });
 });
 
+
+// Rota de login
 app.get('/login', (req, res) => {
     res.render('login', { title: 'Login',isHome: false  });
 });
@@ -316,6 +232,18 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+
+
+// Rota para erro 404
+app.use((req, res) => {
+    res.status(404).render('errors/404', { title: 'Página Não Encontrada' });
+});
+
+// Rota para erro 500
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render('errors/500', { title: 'Erro Interno do Servidor' });
+});
 
 
 

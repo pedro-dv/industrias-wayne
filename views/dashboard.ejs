@@ -1,8 +1,8 @@
 
 
-<div class="mt-4 mb-5">
-    <h4>Adicionar Recurso</h4>
-    <form action="/recursos/adicionar" method="POST" enctype="multipart/form-data">
+<div class="mt-4 mb-5 ">
+    <h4 style="text-align: center;">Adicione Recurso</h4>
+    <form action="/recursos/adicionar" method="POST" enctype="multipart/form-data" style="max-width: 800px; margin:auto">
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="nome" name="nome" required>
@@ -33,6 +33,7 @@
 
 <h3>Recursos:</h3>
 <section class="row" id="section-equipamentos">
+    <% if (recursos && recursos.length > 0) { %>
     <% recursos.forEach(recurso => { %>
         <div class="col-md-4 mb-4">
             <div class="card">
@@ -50,5 +51,12 @@
             </div>
         </div>
     <% }) %>
+    <% } else { %>
+        <div class="col-12 text-center">
+            <p>Nenhum recurso encontrado.</p>
+        </div>
+    <% } %>
+   
+    
 </section>
 
